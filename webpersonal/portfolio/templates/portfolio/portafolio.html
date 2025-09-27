@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Portafolio {% endblock %}
+
+{% block backImg %} {% load static %}{% static 'core/img/portfolio-bg.jpg' %} {% endblock %}
+
+{% block header %}
+    <h1>Portafolio</h1>
+    <span class="subheading">Currículo</span>
+{% endblock %}
+
+{% block contenido %}
+    <!-- El template tag para cargar archivos estaticos debe ir incluso en los templates hijos -->
+    {% load static %}  
+    <!-- Proyecto -->
+    <!-- <div class="row">  	
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img class="img-fluid" src="{% static 'core/img/about-bg.jpg' %}" alt="">
+    </div>
+    <div class="col-lg-7 col-md-8">
+        <h2 class="section-heading title">Segundo proyecto</h2>   
+        <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm....</p>
+        <p><a href="http://google.com">Más información</a></p>
+    </div>
+    </div> -->
+    <!-- Proyecto -->
+    <!-- <div class="row">  	
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img class="img-fluid" src="{% static 'core/img/home-bg.jpg' %}" alt="">
+    </div>
+    <div class="col-lg-7 col-md-8">
+        <h2 class="section-heading title">Primer proyecto</h2>   
+        <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm....</p>
+        <p><a href="http://google.com">Más información</a></p>
+    </div>
+    </div> -->
+
+    <!-- Objects from Project Model -->
+    {% for project in projects %}
+    <div class="row">  	
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+            <img class="img-fluid" src="{{ project.image.url }}" alt="">
+    </div>
+    <div class="col-lg-7 col-md-8">
+        <h2 class="section-heading title">{{ project.title }}</h2>   
+        <p>{{ project.description }}</p>
+
+        {% if project.more_info_url %}
+        <p><a href="{{project.more_info_url}}">Más información</a></p>
+        {% endif %}
+    </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block personalScripts %}
+{% load static %}  
+<script src="{% static 'portfolio/js/myLogic.js' %}"></script>
+{% endblock %}
